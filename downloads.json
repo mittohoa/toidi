@@ -1,0 +1,6 @@
+{
+  "apk_arm64": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-arm64-v8a.apk",
+  "apk_arm32": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-armeabi-v7a.apk",
+  "apk_sha": "5ffc13d2a48994cdb1c2607b95f574e232b96c4bd6bb3640626c10e4ad2c659f",
+  "apk_version": "0.1.0"
+}

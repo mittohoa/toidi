@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:image" content="https://mittohoa.github.io/toidi/assets/img/feature-graphic.png">
+<meta name="theme-color" content="#c6f24e">
+<link rel="icon" href="assets/img/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v={{version}}">
+<script src="assets/site.js?v={{version}}"></script>
+{{head}}
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/img/icon-192.png" alt="">TÔI ĐI</a>
+    <nav class="nav" aria-label="Menu">
+      <a href="./#tinh-nang" {{nav_home}}><span data-l="vi">Tính năng</span><span data-l="en">Features</span></a>
+      <a href="./#tai-ve"><span data-l="vi">Tải về</span><span data-l="en">Download</span></a>
+      <a href="how-it-works.html" {{nav_how}}><span data-l="vi">Cách tính</span><span data-l="en">How it works</span></a>
+      <a href="privacy.html" {{nav_privacy}}><span data-l="vi">Quyền riêng tư</span><span data-l="en">Privacy</span></a>
+    </nav>
+    <div class="toggles">
+      <button class="chip" id="lang-btn" type="button">English</button>
+      <button class="chip" id="theme-btn" type="button" aria-label="Theme">◐</button>
+    </div>
+  </div>
+</header>
+<main>
+{{body}}
+</main>
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>TÔI ĐI</strong> · <span data-l="vi">ứng dụng độc lập, không phải ứng dụng của cơ quan nhà nước.</span><span data-l="en">an independent app, not affiliated with any government agency.</span><br>
+      © <span id="year">2026</span> mittohoa · <span data-l="vi">Bản đồ</span><span data-l="en">Maps</span> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Protomaps
+    </div>
+    <div>
+      <a href="privacy.html"><span data-l="vi">Chính sách quyền riêng tư</span><span data-l="en">Privacy policy</span></a> ·
+      <a href="terms.html"><span data-l="vi">Điều khoản</span><span data-l="en">Terms</span></a> ·
+      <a href="delete-account.html"><span data-l="vi">Xoá tài khoản</span><span data-l="en">Delete account</span></a> ·
+      <a href="how-it-works.html"><span data-l="vi">Cách tính &amp; nguồn dữ liệu</span><span data-l="en">How it works &amp; data</span></a> ·
+      <a href="https://github.com/mittohoa/toidi-data/issues"><span data-l="vi">Góp ý</span><span data-l="en">Feedback</span></a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

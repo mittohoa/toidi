@@ -1,0 +1,123 @@
+<!--
+title: Xoá tài khoản — TÔI ĐI
+description: Cách xoá tài khoản TÔI ĐI và toàn bộ dữ liệu trên máy chủ: trong app, trên web, hoặc gửi yêu cầu. Delete your TÔI ĐI account and data.
+nav: privacy
+-->
+<!--head-->
+<script src="assets/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js" defer></script>
+<!--/head-->
+<article class="narrow doc">
+  <h1><span data-l="vi">Xoá tài khoản TÔI ĐI</span><span data-l="en">Delete your TÔI ĐI account</span></h1>
+  <p class="updated"><span data-l="vi">Ứng dụng TÔI ĐI · nhà phát triển mittohoa</span><span data-l="en">TÔI ĐI app · developer mittohoa</span></p>
+
+  <p>
+    <span data-l="vi">Tài khoản là tuỳ chọn (chỉ để đồng bộ). Khi xoá, <strong>các dữ liệu sau bị xoá ngay và vĩnh viễn</strong> khỏi máy chủ: tài khoản (email, mã tài khoản), tên hiển thị, ảnh đại diện, địa điểm đã lưu, lịch sử chuyến và đánh giá kèm theo. Không giữ lại bản sao nào.</span>
+    <span data-l="en">An account is optional (only for sync). Deleting it <strong>immediately and permanently removes</strong> from our servers: the account (email, account ID), display name, profile photo, saved places, trip history and the ratings attached to it. No copies are kept.</span>
+  </p>
+  <p class="small">
+    <span data-l="vi">Không bị ảnh hưởng: dữ liệu trên điện thoại của bạn (xoá trong app hoặc gỡ app), và các báo cáo đánh giá ẩn danh — vốn không gắn với tài khoản nào, tự xoá sau tối đa 24 tháng. Xem <a href="privacy.html">chính sách quyền riêng tư</a>.</span>
+    <span data-l="en">Not affected: data on your phone (clear it in the app or uninstall), and anonymous rating reports — which are not linked to any account and are deleted after at most 24 months. See the <a href="privacy.html">privacy policy</a>.</span>
+  </p>
+
+  <h2><span data-l="vi">Cách 1 — Trong ứng dụng</span><span data-l="en">Option 1 — In the app</span></h2>
+  <ol>
+    <li><span data-l="vi">Mở TÔI ĐI, bấm ảnh đại diện ở góc trên bên phải (<em>Cá nhân &amp; cài đặt</em>).</span><span data-l="en">Open TÔI ĐI and tap your avatar at the top right (<em>Profile &amp; settings</em>).</span></li>
+    <li><span data-l="vi">Chọn <em>Tài khoản &amp; đồng bộ</em>.</span><span data-l="en">Choose <em>Account &amp; sync</em>.</span></li>
+    <li><span data-l="vi">Bấm <em>Xoá tài khoản</em> → <em>Xoá vĩnh viễn</em>.</span><span data-l="en">Tap <em>Delete account</em> → <em>Delete forever</em>.</span></li>
+  </ol>
+
+  <h2 id="web"><span data-l="vi">Cách 2 — Trên trang này</span><span data-l="en">Option 2 — On this page</span></h2>
+  <p><span data-l="vi">Đăng nhập bằng tài khoản email của TÔI ĐI rồi xoá.</span><span data-l="en">Sign in with your TÔI ĐI email account, then delete.</span></p>
+  <form id="signin">
+    <label><span data-l="vi">Email</span><span data-l="en">Email</span><input type="email" name="email" autocomplete="email" required></label>
+    <label><span data-l="vi">Mật khẩu</span><span data-l="en">Password</span><input type="password" name="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit"><span data-l="vi">Đăng nhập</span><span data-l="en">Sign in</span></button>
+    <div class="msg" id="signin-msg" hidden></div>
+  </form>
+  <div id="confirm" hidden>
+    <p class="msg"><span data-l="vi">Đang đăng nhập:</span><span data-l="en">Signed in as:</span> <strong id="who"></strong></p>
+    <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400">
+      <input type="checkbox" id="ack" style="margin-top:5px">
+      <span><span data-l="vi">Tôi hiểu tài khoản và dữ liệu trên máy chủ sẽ bị xoá vĩnh viễn, không khôi phục được.</span><span data-l="en">I understand my account and server data will be permanently deleted and cannot be recovered.</span></span>
+    </label>
+    <p style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn danger" id="delete" type="button" disabled><span data-l="vi">Xoá vĩnh viễn</span><span data-l="en">Delete forever</span></button>
+      <button class="btn ghost" id="signout" type="button"><span data-l="vi">Đăng xuất</span><span data-l="en">Sign out</span></button>
+    </p>
+  </div>
+  <div class="msg" id="done" hidden></div>
+  <p class="small"><span data-l="vi">Tài khoản đăng nhập bằng Google: dùng Cách 1 trong app, hoặc Cách 3.</span><span data-l="en">Accounts that use Google sign-in: use Option 1 in the app, or Option 3.</span></p>
+
+  <h2 id="form"><span data-l="vi">Cách 3 — Gửi yêu cầu</span><span data-l="en">Option 3 — Send a request</span></h2>
+  <p><span data-l="vi">Không còn cài app, hoặc không đăng nhập được? Gửi email của tài khoản — yêu cầu được xử lý trong vòng 30 ngày.</span><span data-l="en">No longer have the app, or can't sign in? Send your account email — requests are handled within 30 days.</span></p>
+  <form id="request">
+    <label><span data-l="vi">Email của tài khoản</span><span data-l="en">Account email</span><input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+    <label><span data-l="vi">Ghi chú (không bắt buộc)</span><span data-l="en">Note (optional)</span><textarea name="note" rows="3" maxlength="500"></textarea></label>
+    <button class="btn primary" type="submit"><span data-l="vi">Gửi yêu cầu xoá</span><span data-l="en">Send deletion request</span></button>
+    <div class="msg" id="request-msg" hidden></div>
+  </form>
+</article>
+
+<script>
+(function () {
+  var T = {
+    vi: { wrong: 'Sai email hoặc mật khẩu.', net: 'Không kết nối được máy chủ. Thử lại sau.', deleted: 'Đã xoá tài khoản và toàn bộ dữ liệu trên máy chủ. Bạn có thể gỡ app hoặc xoá dữ liệu trên máy trong app.', fail: 'Không xoá được: ', sent: 'Đã nhận yêu cầu. Tài khoản sẽ được xoá trong vòng 30 ngày.', bad: 'Email không hợp lệ.' },
+    en: { wrong: 'Wrong email or password.', net: 'Could not reach the server. Try again later.', deleted: 'Your account and all server data have been deleted. You can uninstall the app or clear on-device data in the app.', fail: 'Could not delete: ', sent: 'Request received. The account will be deleted within 30 days.', bad: 'Invalid email.' }
+  };
+  function t(k) { return T[window.toidi ? toidi.lang() : 'vi'][k]; }
+  function show(el, text, err) { el.hidden = false; el.textContent = text; el.classList.toggle('err', !!err); }
+  var client = null;
+  function sb() {
+    if (!client && window.supabase && window.TOIDI_CONFIG) {
+      client = window.supabase.createClient(TOIDI_CONFIG.supabaseUrl, TOIDI_CONFIG.supabaseKey, { auth: { persistSession: false } });
+    }
+    return client;
+  }
+  window.addEventListener('DOMContentLoaded', function () {
+    var signin = document.getElementById('signin'), confirm = document.getElementById('confirm');
+    var ack = document.getElementById('ack'), del = document.getElementById('delete');
+    ack.addEventListener('change', function () { del.disabled = !ack.checked; });
+
+    signin.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var m = document.getElementById('signin-msg'); m.hidden = true;
+      var c = sb(); if (!c) return show(m, t('net'), true);
+      var f = new FormData(signin);
+      var r = await c.auth.signInWithPassword({ email: String(f.get('email')).trim(), password: String(f.get('password')) });
+      if (r.error) return show(m, /invalid/i.test(r.error.message) ? t('wrong') : r.error.message, true);
+      document.getElementById('who').textContent = r.data.user.email;
+      signin.hidden = true; confirm.hidden = false;
+    });
+
+    document.getElementById('signout').addEventListener('click', async function () {
+      var c = sb(); if (c) await c.auth.signOut();
+      confirm.hidden = true; signin.hidden = false; signin.reset(); ack.checked = false; del.disabled = true;
+    });
+
+    del.addEventListener('click', async function () {
+      var c = sb(), done = document.getElementById('done');
+      del.disabled = true;
+      var u = (await c.auth.getUser()).data.user;
+      // ảnh đại diện: xoá qua Storage API trước (SQL không xoá được storage), rồi xoá tài khoản + dữ liệu
+      try { await c.storage.from('avatars').remove([u.id + '.jpg']); } catch (e) {}
+      var r = await c.rpc('delete_my_account');
+      if (r.error) { del.disabled = false; return show(done, t('fail') + r.error.message, true); }
+      await c.auth.signOut();
+      confirm.hidden = true; show(done, t('deleted'));
+    });
+
+    var req = document.getElementById('request');
+    req.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var m = document.getElementById('request-msg'); m.hidden = true;
+      var f = new FormData(req), email = String(f.get('email')).trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return show(m, t('bad'), true);
+      var c = sb(); if (!c) return show(m, t('net'), true);
+      var r = await c.from('deletion_requests').insert({ email: email, note: String(f.get('note') || '') || null, lang: toidi.lang() });
+      if (r.error) return show(m, t('net'), true);
+      req.reset(); show(m, t('sent'));
+    });
+  });
+})();
+</script>

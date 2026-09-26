@@ -1,0 +1,2 @@
+// Sinh bởi toidi-project/tools/site_config.py — khoá công khai (publishable), giống trong app.
+window.TOIDI_CONFIG = {"supabaseUrl": "https://qikpqppgvafyqwuupowl.supabase.co", "supabaseKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpa3BxcHBndmFmeXF3dXVwb3dsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0MTU3NzMsImV4cCI6MjEwNTk5MTc3M30.3TdiMxefmGA14gYrMWPZawr9vSi-AXZUmEI9JKT_dzU"};

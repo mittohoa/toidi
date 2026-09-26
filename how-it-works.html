@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cách tính & nguồn dữ liệu — TÔI ĐI</title>
+<meta name="description" content="TÔI ĐI tính giờ xe, thời gian chờ, đi bộ, giá vé thế nào và lấy dữ liệu từ đâu. How TÔI ĐI computes times, fares and where data comes from.">
+<meta property="og:title" content="Cách tính & nguồn dữ liệu — TÔI ĐI">
+<meta property="og:description" content="TÔI ĐI tính giờ xe, thời gian chờ, đi bộ, giá vé thế nào và lấy dữ liệu từ đâu. How TÔI ĐI computes times, fares and where data comes from.">
+<meta property="og:image" content="https://mittohoa.github.io/toidi/assets/img/feature-graphic.png">
+<meta name="theme-color" content="#c6f24e">
+<link rel="icon" href="assets/img/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=431d52ef">
+<script src="assets/site.js?v=431d52ef"></script>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="assets/img/icon-192.png" alt="">TÔI ĐI</a>
+    <nav class="nav" aria-label="Menu">
+      <a href="./#tinh-nang" ><span data-l="vi">Tính năng</span><span data-l="en">Features</span></a>
+      <a href="./#tai-ve"><span data-l="vi">Tải về</span><span data-l="en">Download</span></a>
+      <a href="how-it-works.html" aria-current="page"><span data-l="vi">Cách tính</span><span data-l="en">How it works</span></a>
+      <a href="privacy.html" ><span data-l="vi">Quyền riêng tư</span><span data-l="en">Privacy</span></a>
+    </nav>
+    <div class="toggles">
+      <button class="chip" id="lang-btn" type="button">English</button>
+      <button class="chip" id="theme-btn" type="button" aria-label="Theme">◐</button>
+    </div>
+  </div>
+</header>
+<main>
+<article class="narrow doc">
+<div data-l="vi">
+<h1>Cách app tính toán</h1>
+<div class="notice">TÔI ĐI không có vị trí xe theo thời gian thực. Mọi giờ giấc, thời gian và chi phí là ước tính từ dữ liệu công bố — dưới đây là nguồn và cách tính từng con số, để bạn biết nên tin tới đâu.</div>
+<h2>🕒 Giờ chạy và thời gian chờ</h2>
+<ul><li>TP.HCM: giờ hoạt động, khoảng cách chuyến (tần suất) và giờ xuất bến lấy từ hệ thống thông tin xe buýt TP.HCM (apicms.ebms.vn), theo đúng thứ trong tuần.</li><li>Hà Nội: lấy từ timbus.vn (Transerco); metro 2A/3 theo OpenStreetMap.</li><li>Tuyến chạy theo tần suất: thời gian chờ = một nửa khoảng cách chuyến (vd 15 phút/chuyến → chờ ~7 phút). Vì vậy &quot;giờ lên xe&quot; là ước tính, không phải giờ xe tới thật.</li><li>Tuyến có giờ xuất bến cố định: dùng đúng giờ xuất bến.</li></ul>
+<h2>🚌 Thời gian đi xe</h2>
+<ul><li>TP.HCM: thời gian chạy toàn tuyến theo biểu đồ của nguồn, chia cho từng trạm theo quãng đường dọc lộ trình.</li><li>Hà Nội: nguồn không cho thời gian chạy → ước theo chiều dài lộ trình với vận tốc trung bình 16 km/h (buýt, đã tính dừng đón trả khách) và 35 km/h (metro).</li><li>Không tính kẹt xe thực tế — giờ cao điểm có thể chậm hơn.</li></ul>
+<h2>🚶 Đi bộ và chuyển tuyến</h2>
+<ul><li>Tốc độ đi bộ 1,2 m/s (~4,3 km/h, đã tính chờ đèn). Quãng đường đi bộ = đường chim bay × 1,3 (đường phố quanh co).</li><li>Đi bộ tới trạm tối đa 800 m; chuyển tuyến đi bộ tối đa 400 m và cần ít nhất 1 phút; tối đa 4 chặng xe.</li><li>Nếu bạn bật &quot;Đường đi theo phố&quot;, đoạn đi bộ được vẽ theo đường thật (OSRM/FOSSGIS, dữ liệu OpenStreetMap); thời gian vẫn tính như trên.</li></ul>
+<h2>↕️ Xếp hạng phương án</h2>
+<ul><li>&quot;Đề xuất&quot;: giờ tới sớm nhất, mỗi lần chuyển tuyến tính thêm 5 phút (vì chuyển tuyến mệt và dễ lỡ xe). Tuyến giá cao (liên tỉnh, sân bay – Vũng Tàu, buýt du lịch) chỉ được đề xuất khi nhanh hơn hẳn: mỗi nghìn đồng vượt 20.000đ tính như chậm thêm 1 phút.</li><li>Các tiêu chí khác (nhanh nhất, ít chuyển, rẻ nhất, ngắn nhất, ít đi bộ) — hoà thì xét giờ tới.</li><li>Nhiều điểm dừng: mỗi đoạn chọn phương án tốt nhất theo tiêu chí đang chọn; &quot;Tối ưu thứ tự&quot; thử mọi thứ tự ghé và chọn thứ tự tới nơi sớm nhất.</li></ul>
+<h2>💵 Giá vé</h2>
+<ul><li>Giá vé lượt của từng tuyến theo nguồn công bố; tổng = cộng giá các chặng (không tính vé tháng, miễn giảm hay vé liên thông).</li><li>Tuyến chưa có giá trong nguồn → hiện &quot;giá vé chưa rõ&quot; thay vì đoán.</li></ul>
+<h2>🛵 Khi hết xe: đi bộ, xe máy / taxi</h2>
+<ul><li>Đường đi bộ và đường xe lấy từ OSRM (FOSSGIS, dữ liệu OpenStreetMap), chỉ khi bạn đã cho phép.</li><li>Thời gian xe máy / taxi = lấy mức chậm hơn giữa (thời gian OSRM × 1,3) và (quãng đường ở 25 km/h) — vì OSRM không biết kẹt xe. Chỉ là ước tính.</li><li>&quot;Chuyến sớm nhất&quot; = chạy lại tìm đường từ 4:30 sáng hôm sau.</li><li>&quot;Gần chuyến cuối&quot; = lên xe trong vòng 30 phút trước chuyến cuối theo giờ hoạt động công bố.</li></ul>
+<h2>📊 Hành trình của tôi</h2>
+<ul><li>Km đi xe = quãng đường dọc lộ trình các chặng xe; km đi bộ theo cách tính đi bộ ở trên.</li><li>Số bước ≈ 1.300 bước/km đi bộ.</li><li>CO₂ giảm ≈ 50 g cho mỗi km đi xe công cộng thay cho xe máy (xe máy ~90 g/km, buýt/metro ~40 g/km mỗi hành khách).</li><li>Chuyến quen: ít nhất 3 lần cùng điểm đi–đến, cùng khung giờ (±90 phút) trong 6 tuần gần đây.</li></ul>
+<h2>🔄 Độ mới của dữ liệu</h2>
+<ul><li>Dữ liệu tuyến được kiểm tra và cập nhật định kỳ; ngày cập nhật luôn hiện trong app. Quá 30 ngày chưa cập nhật, app sẽ cảnh báo.</li><li>Địa điểm, tên đường, phường/xã (theo địa giới từ 1/7/2025) lấy từ OpenStreetMap.</li><li>Thấy sai? Đánh giá 👎 và chọn &quot;Giờ chạy trong app sai&quot; / &quot;Trạm không có&quot; / &quot;Tuyến đã đổi lộ trình&quot; — báo cáo ẩn danh được tổng hợp mỗi lần cập nhật.</li></ul>
+<h2>Nguồn dữ liệu &amp; ghi công</h2>
+<ul>
+<li><strong>Xe buýt, metro TP.HCM</strong> (gồm Bình Dương, Bà Rịa – Vũng Tàu cũ): tổng hợp từ thông tin công khai của hệ thống thông tin xe buýt TP.HCM (apicms.ebms.vn).</li>
+<li><strong>Xe buýt Hà Nội</strong>: tổng hợp từ thông tin công khai của Transerco (timbus.vn). <strong>Metro Hà Nội</strong> (2A, 3): © OpenStreetMap contributors.</li>
+<li><strong>Bản đồ, địa điểm, tên đường, phường/xã</strong>: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> (ODbL); bản đồ nền <a href="https://protomaps.com">Protomaps</a>.</li>
+<li><strong>Đường đi bộ / xe theo phố</strong> (tuỳ chọn): <a href="https://routing.openstreetmap.de/about.html">OSRM · FOSSGIS</a>, dữ liệu OpenStreetMap.</li>
+</ul>
+<p>Dữ liệu đã xử lý được công bố lại tại <a href="https://github.com/mittohoa/toidi-data">github.com/mittohoa/toidi-data</a> (phần dẫn xuất từ OpenStreetMap theo giấy phép ODbL). Thấy sai? Đánh giá 👎 trong app và chọn nhãn phù hợp, hoặc <a href="https://github.com/mittohoa/toidi-data/issues">mở issue</a>.</p>
+</div>
+<div data-l="en">
+<h1>How the app calculates</h1>
+<div class="notice">TÔI ĐI has no real-time vehicle positions. Every time, duration and cost is an estimate from published data — here is where each number comes from and how it&#x27;s computed, so you know how far to trust it.</div>
+<h2>🕒 Timetables and waiting time</h2>
+<ul><li>HCMC: operating hours, headways and departure times come from the HCMC bus information system (apicms.ebms.vn), by day of week.</li><li>Hanoi: from timbus.vn (Transerco); metro lines 2A/3 from OpenStreetMap.</li><li>Frequency-based routes: waiting time = half the headway (e.g. every 15 min → ~7 min wait). So the &quot;board at&quot; time is an estimate, not when a bus actually arrives.</li><li>Routes with fixed departures: the published departure times are used as is.</li></ul>
+<h2>🚌 Ride time</h2>
+<ul><li>HCMC: the route&#x27;s scheduled running time from the source, split between stops by distance along the route.</li><li>Hanoi: the source has no running times → estimated from route length at 16 km/h average (bus, including stops) and 35 km/h (metro).</li><li>Live traffic is not included — rush hour may be slower.</li></ul>
+<h2>🚶 Walking and transfers</h2>
+<ul><li>Walking speed 1.2 m/s (~4.3 km/h, including crossings). Walking distance = straight line × 1.3 (streets aren&#x27;t straight).</li><li>Up to 800 m walk to a stop; transfers up to 400 m walk with at least 1 minute; at most 4 rides.</li><li>With &quot;Street paths&quot; on, walking legs are drawn along real streets (OSRM/FOSSGIS, OpenStreetMap data); times are still computed as above.</li></ul>
+<h2>↕️ Ranking options</h2>
+<ul><li>&quot;Best&quot;: earliest arrival, with 5 minutes added per transfer (transfers are tiring and easy to miss). Premium routes (intercity, airport – Vũng Tàu, sightseeing buses) are only suggested when clearly faster: every 1,000 VND above 20,000 VND counts as 1 extra minute.</li><li>Other criteria (fastest, fewest transfers, cheapest, shortest, least walking) — ties go to earliest arrival.</li><li>Multi-stop: each leg uses the best option for the selected criterion; &quot;Best order&quot; tries every visiting order and keeps the one that arrives earliest.</li></ul>
+<h2>💵 Fares</h2>
+<ul><li>Single-ride fare for each route as published; total = sum of legs (no passes, discounts or integrated tickets).</li><li>Routes with no published fare show &quot;fare unknown&quot; instead of a guess.</li></ul>
+<h2>🛵 When buses stop: walking, motorbike / taxi</h2>
+<ul><li>Walking and driving routes come from OSRM (FOSSGIS, OpenStreetMap data), only if you allowed it.</li><li>Motorbike / taxi time = the slower of (OSRM time × 1.3) and (distance at 25 km/h) — OSRM doesn&#x27;t know traffic. Estimate only.</li><li>&quot;Earliest trip&quot; = the planner run again from 4:30 the next morning.</li><li>&quot;Near last trip&quot; = boarding within 30 minutes of the last published departure.</li></ul>
+<h2>📊 My journeys</h2>
+<ul><li>Ride km = distance along the route for each ride; walk km as computed above.</li><li>Steps ≈ 1,300 per km walked.</li><li>CO₂ saved ≈ 50 g per km by transit instead of motorbike (motorbike ~90 g/km, bus/metro ~40 g/km per passenger).</li><li>Usual trips: at least 3 trips with the same start–end at a similar time (±90 min) in the last 6 weeks.</li></ul>
+<h2>🔄 Data freshness</h2>
+<ul><li>Route data is checked and updated regularly; the update date is always shown. After 30 days without an update, the app warns you.</li><li>Places, streets and wards/communes (post-1 July 2025 boundaries) come from OpenStreetMap.</li><li>Spotted a mistake? Rate 👎 and pick &quot;Wrong times in app&quot; / &quot;Stop missing&quot; / &quot;Route has changed&quot; — anonymous reports are reviewed at each update.</li></ul>
+<h2>Data sources &amp; credits</h2>
+<ul>
+<li><strong>HCMC bus &amp; metro</strong> (including former Bình Dương and Bà Rịa – Vũng Tàu): compiled from public information of the HCMC bus information system (apicms.ebms.vn).</li>
+<li><strong>Hanoi bus</strong>: compiled from public information of Transerco (timbus.vn). <strong>Hanoi metro</strong> (2A, 3): © OpenStreetMap contributors.</li>
+<li><strong>Maps, places, streets, wards</strong>: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> (ODbL); basemap by <a href="https://protomaps.com">Protomaps</a>.</li>
+<li><strong>Street walking / driving routes</strong> (optional): <a href="https://routing.openstreetmap.de/about.html">OSRM · FOSSGIS</a>, OpenStreetMap data.</li>
+</ul>
+<p>Processed data is republished at <a href="https://github.com/mittohoa/toidi-data">github.com/mittohoa/toidi-data</a> (OpenStreetMap-derived parts under the ODbL). Spotted a mistake? Rate 👎 in the app and pick a tag, or <a href="https://github.com/mittohoa/toidi-data/issues">open an issue</a>.</p>
+</div>
+</article>
+</main>
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>TÔI ĐI</strong> · <span data-l="vi">ứng dụng độc lập, không phải ứng dụng của cơ quan nhà nước.</span><span data-l="en">an independent app, not affiliated with any government agency.</span><br>
+      © <span id="year">2026</span> mittohoa · <span data-l="vi">Bản đồ</span><span data-l="en">Maps</span> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>, Protomaps
+    </div>
+    <div>
+      <a href="privacy.html"><span data-l="vi">Chính sách quyền riêng tư</span><span data-l="en">Privacy policy</span></a> ·
+      <a href="terms.html"><span data-l="vi">Điều khoản</span><span data-l="en">Terms</span></a> ·
+      <a href="delete-account.html"><span data-l="vi">Xoá tài khoản</span><span data-l="en">Delete account</span></a> ·
+      <a href="how-it-works.html"><span data-l="vi">Cách tính &amp; nguồn dữ liệu</span><span data-l="en">How it works &amp; data</span></a> ·
+      <a href="https://github.com/mittohoa/toidi-data/issues"><span data-l="vi">Góp ý</span><span data-l="en">Feedback</span></a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
