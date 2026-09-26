@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <!-- base href được `flutter build web --base-href /toidi/app/` thay khi triển khai -->
+  <base href="/toidi/app/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="TÔI ĐI — chỉ đường xe buýt, metro TP.HCM và Hà Nội ngay trên trình duyệt. Bus & metro directions for Ho Chi Minh City and Hanoi.">
+  <meta name="theme-color" content="#c6f24e">
+  <meta name="color-scheme" content="light dark">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TÔI ĐI">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json">
+
+  <title>TÔI ĐI — Xe buýt & Metro</title>
+  <style>
+    /* màn chờ khi tải (trước khi Flutter vẽ): cùng màu nền app, theo sáng/tối */
+    html, body { margin: 0; height: 100%; background: #f5f4ef; }
+    @media (prefers-color-scheme: dark) { html, body { background: #0e1013; } }
+    #boot { position: fixed; inset: 0; display: grid; place-items: center; font: 600 15px system-ui, sans-serif; color: #5d6168; }
+    #boot .dot { width: 14px; height: 14px; border-radius: 50%; background: #c6f24e; margin: 0 auto 12px; animation: p 1s ease-in-out infinite; }
+    @keyframes p { 50% { transform: scale(1.6); opacity: .5 } }
+    @media (prefers-reduced-motion: reduce) { #boot .dot { animation: none } }
+  </style>
+</head>
+<body>
+  <div id="boot" aria-live="polite"><div><div class="dot"></div>TÔI ĐI</div></div>
+  <script>
+    // Không dùng service worker của Flutter: nó cố lưu các phản hồi đọc-một-phần (Range 206) của bản đồ PMTiles
+    // vào Cache và báo lỗi; gỡ bản đã đăng ký từ lần triển khai trước (nếu có).
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
+    }
+    window.addEventListener('flutter-first-frame', function () {
+      var b = document.getElementById('boot'); if (b) b.remove();
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
