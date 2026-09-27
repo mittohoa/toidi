@@ -7,7 +7,7 @@ nav: privacy
 
 <div data-l="vi">
 <h1>Chính sách quyền riêng tư</h1>
-<p class="updated">Hiệu lực từ 27/09/2026 · Áp dụng cho ứng dụng TÔI ĐI (Android, <code>com.mittohoa.toidi_app</code>) và trang này.</p>
+<p class="updated">Hiệu lực từ 28/09/2026 · Áp dụng cho ứng dụng TÔI ĐI (Android, <code>com.mittohoa.toidi_app</code>) và trang này.</p>
 
 <p>TÔI ĐI là ứng dụng tra cứu và chỉ đường xe buýt, metro tại TP. Hồ Chí Minh và Hà Nội, do cá nhân phát triển (tài khoản nhà phát triển <strong>mittohoa</strong>). TÔI ĐI <strong>không phải ứng dụng chính thức</strong> và không đại diện cho bất kỳ cơ quan nhà nước hay đơn vị vận tải nào.</p>
 
@@ -46,7 +46,10 @@ nav: privacy
 <h3>2.4 Đánh giá ẩn danh (tuỳ chọn) — Supabase</h3>
 <p>Khi bạn đánh giá một chuyến và để bật "Gửi ẩn danh", app gửi một báo cáo <strong>không kèm tài khoản, tên địa điểm hay toạ độ</strong>: thành phố, mã tuyến và mã trạm lên/xuống, nhãn bạn chọn (vd "xe trễ", "trạm không có"), ngày và giờ đi, trễ bao nhiêu phút, phiên bản app. Chỉ dùng để phát hiện dữ liệu sai; app không đọc được bảng này. Tắt được ngay trong bảng đánh giá hoặc trong cài đặt.</p>
 
-<h3>2.5 Dịch vụ của Google trên máy</h3>
+<h3>2.5 Góp ý lộ trình, báo sai tuyến (khi bạn bấm gửi) — Supabase</h3>
+<p>Khi bạn bấm "Tôi hay đi cách khác" ở danh sách lộ trình và gửi, app gửi một góp ý <strong>ẩn danh, không kèm tài khoản, không có chữ tự do</strong>: thành phố, <strong>điểm đi và điểm đến làm tròn ~200 m</strong>, giờ và thứ trong tuần, các tuyến bạn chọn, các lý do bạn tích (rẻ hơn, ít đi bộ…), các phương án app đã gợi ý, ngày của bộ dữ liệu, phiên bản app. Khi bạn bấm "Báo sai" ở trang tuyến: chỉ mã tuyến và các loại sai bạn tích (không có vị trí). Chỉ dùng để kiểm tra cách app gợi ý lộ trình và sửa dữ liệu sai; app không đọc được bảng này. Không gửi gì nếu bạn không bấm gửi.</p>
+
+<h3>2.6 Dịch vụ của Google trên máy</h3>
 <p>Đăng nhập bằng Google (Credential Manager) và nhận dạng giọng nói do Google thực hiện theo <a href="https://policies.google.com/privacy">chính sách của Google</a>. Nút "Mở Google Maps" chỉ mở ứng dụng Google Maps với điểm đi/đến khi bạn bấm.</p>
 
 <h2>3. Quyền Android app xin</h2>
@@ -64,7 +67,7 @@ nav: privacy
 <ul>
 <li><strong>Trên máy:</strong> xoá lịch sử trong <em>Hành trình › Xoá toàn bộ lịch sử</em>; xoá địa điểm trong tab <em>Đã lưu</em>; hoặc gỡ ứng dụng.</li>
 <li><strong>Tài khoản và dữ liệu trên máy chủ</strong> được giữ tới khi bạn xoá: trong app vào <em>Cá nhân &amp; cài đặt › Tài khoản &amp; đồng bộ › Xoá tài khoản</em>, hoặc trên web tại <a href="delete-account.html">trang Xoá tài khoản</a>. Tài khoản, địa điểm, lịch sử và ảnh đại diện bị xoá ngay, vĩnh viễn.</li>
-<li><strong>Báo cáo đánh giá ẩn danh</strong> không gắn với ai nên không xác định được để xoá theo yêu cầu; được giữ tối đa 24 tháng rồi xoá.</li>
+<li><strong>Báo cáo đánh giá ẩn danh, góp ý lộ trình và báo sai tuyến</strong> không gắn với ai nên không xác định được để xoá theo yêu cầu; được giữ tối đa 24 tháng rồi xoá.</li>
 </ul>
 
 <h2>5. Bảo mật</h2>
@@ -82,7 +85,7 @@ nav: privacy
 
 <div data-l="en">
 <h1>Privacy policy</h1>
-<p class="updated">Effective 27 September 2026 · Applies to the TÔI ĐI app (Android, <code>com.mittohoa.toidi_app</code>) and this website.</p>
+<p class="updated">Effective 28 September 2026 · Applies to the TÔI ĐI app (Android, <code>com.mittohoa.toidi_app</code>) and this website.</p>
 
 <p>TÔI ĐI is a bus and metro directions app for Ho Chi Minh City and Hanoi, developed by an individual (developer account <strong>mittohoa</strong>). TÔI ĐI is <strong>not an official app</strong> and does not represent any government agency or transit operator.</p>
 
@@ -121,7 +124,10 @@ nav: privacy
 <h3>2.4 Anonymous ratings (optional) — Supabase</h3>
 <p>When you rate a trip with "Send anonymously" on, the app sends a report with <strong>no account, place names or coordinates</strong>: city, route and boarding/alighting stop codes, the tags you picked (e.g. "late", "stop missing"), trip date and hour, minutes late, app version. It is used only to find wrong data; the app cannot read this table. Turn it off in the rating sheet or in settings.</p>
 
-<h3>2.5 Google services on your phone</h3>
+<h3>2.5 Route suggestions and route problem reports (when you tap send) — Supabase</h3>
+<p>When you tap "I usually go another way" under the route options and send, the app sends a suggestion that is <strong>anonymous, with no account and no free text</strong>: city, <strong>start and destination rounded to ~200 m</strong>, hour and weekday, the routes you picked, the reasons you ticked (cheaper, less walking…), the options the app showed, the data version date, the app version. When you tap "Report a problem" on a route page: only the route code and the problems you ticked (no location). Used only to check how the app suggests routes and to fix wrong data; the app cannot read this table. Nothing is sent unless you tap send.</p>
+
+<h3>2.6 Google services on your phone</h3>
 <p>Google sign-in (Credential Manager) and speech recognition are performed by Google under <a href="https://policies.google.com/privacy">Google's privacy policy</a>. "Open Google Maps" just opens the Google Maps app with your start and destination when you tap it.</p>
 
 <h2>3. Android permissions</h2>
@@ -139,7 +145,7 @@ nav: privacy
 <ul>
 <li><strong>On device:</strong> <em>My journeys › Clear all history</em>; remove places in the <em>Saved</em> tab; or uninstall the app.</li>
 <li><strong>Account and server data</strong> are kept until you delete them: in the app, <em>Profile &amp; settings › Account &amp; sync › Delete account</em>, or on the web at the <a href="delete-account.html">Delete account page</a>. Your account, places, history and profile photo are deleted immediately and permanently.</li>
-<li><strong>Anonymous rating reports</strong> are not linked to anyone and therefore cannot be identified for deletion on request; they are kept for up to 24 months and then deleted.</li>
+<li><strong>Anonymous rating reports, route suggestions and route problem reports</strong> are not linked to anyone and therefore cannot be identified for deletion on request; they are kept for up to 24 months and then deleted.</li>
 </ul>
 
 <h2>5. Security</h2>

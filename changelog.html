@@ -37,6 +37,17 @@
 <article class="narrow doc">
 <h1><span data-l="vi">Nhật ký phiên bản</span><span data-l="en">Release notes</span></h1>
 <p class="small" data-l="en">Release notes are written in Vietnamese; the English summary is on the <a href="https://github.com/mittohoa/toidi/releases">Releases page</a>.</p>
+<h2>0.1.11 — 28/09/2026</h2>
+<ul>
+<li><strong>Góp ý lộ trình ngay trong app</strong>: &quot;Tôi hay đi cách khác&quot; ở cuối danh sách lộ trình (chọn các tuyến bạn thật sự đi + lý do) và &quot;Báo sai&quot; ở trang tuyến (trạm không còn, tuyến đổi, giờ / giá sai, tạm ngưng). Gửi ẩn danh, chỉ lựa chọn có sẵn, điểm đi / đến làm tròn ~200 m; TÔI ĐI kiểm tra rồi mới sửa dữ liệu hoặc cách gợi ý.</li>
+<li>Tính lại theo đường đi bộ thật nhanh hơn: một yêu cầu cho cả hai đầu, được ưu tiên trước yêu cầu vẽ đường, máy chủ chậm quá 6 giây thì giữ ước tính.</li>
+<li><strong>Hà Nội: giá vé metro 2A và 3</strong> (trước đây hiện &quot;?&quot;): theo biểu giá từ 1/8/2025 — 9.000đ tới ga kế tiếp, đi hết tuyến 19.000đ (2A) / 15.000đ (3); các mức ở giữa ước tính theo quãng đường, ghi &quot;khoảng&quot;.</li>
+<li><strong>Tìm kiếm chịu được gõ sai</strong>: &quot;cho ben tanh&quot;, &quot;dai hoc hutevh&quot; vẫn ra đúng chỗ (kết quả gần đúng xếp sau kết quả khớp đúng); hiểu thêm viết tắt: tp, sb (sân bay), kdl (khu du lịch), ktx, ks, st (siêu thị), đhqg, bvđk, nvh…</li>
+<li>&quot;Đề xuất&quot; tính cả rủi ro lỡ chuyến: phải chuyển sang tuyến thưa chuyến (quá 15 phút/chuyến) thì xếp sau cách chuyển sang tuyến dày chuyến (vd tuyến 30 phút/chuyến tính như chậm thêm 7,5 phút).</li>
+<li>Tìm đường chạy nền: giao diện không còn khựng khi đổi điểm đi / đến, giờ đi hay cách tới trạm (Android, Windows).</li>
+<li>Không còn gợi ý cách phải đi bộ quá nhiều (trên 1,2 km) khi có cách khác đi bộ ít hơn hẳn mà không phải đổi xe thêm hay trả thêm tiền (vd buýt + metro đi bộ 1,4 km bên cạnh cách buýt miễn phí đi bộ 130 m). Tuyến thẳng phải đi bộ xa vẫn giữ.</li>
+<li>Hộp thoại &quot;Vẽ đường đi theo phố?&quot;, mô tả trong Cài đặt và mục quyền riêng tư ghi đủ mục đích mới: ngoài vẽ đường, app còn dùng OSRM để tính quãng đi bộ thật ra / vào trạm (từ 0.1.9); mục quyền riêng tư trong app nói rõ vị trí chỉ gửi đi khi bạn bật &quot;Đường đi theo phố&quot;.</li>
+</ul>
 <h2>0.1.10 — 27/09/2026</h2>
 <ul>
 <li>Sửa: xuống xe rồi đi bộ ngang qua một trạm khác để tới nơi — lộ trình hiện hai dòng đi bộ liền nhau; giờ gộp thành một đoạn (&quot;Đi bộ 170 m tới ĐH Bách Khoa&quot;).</li>
