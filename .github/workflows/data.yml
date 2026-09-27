@@ -1,0 +1,45 @@
+# Bản web luôn có dữ liệu tuyến mới như app điện thoại: sau mỗi đợt phát hành dữ liệu hằng tuần
+# (mittohoa/toidi-data, 03:00 thứ Hai giờ VN), chép gói tuyến + địa điểm vào app/packs/ rồi dựng lại trang.
+name: Cập nhật dữ liệu bản web
+
+on:
+  schedule:
+    - cron: "0 22 * * 0" # 22:00 UTC Chủ nhật = 05:00 thứ Hai giờ VN (sau đợt dữ liệu 2 tiếng)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: site-data
+  cancel-in-progress: false
+
+jobs:
+  packs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Lấy dữ liệu mới nhất
+        env:
+          PYTHONUTF8: "1"
+        run: python tools/update_packs.py
+      - name: Commit nếu có thay đổi + dựng lại trang
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git status --porcelain app/packs | grep -q .; then
+            git config user.name "toidi-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add app/packs
+            git commit -m "dữ liệu bản web: cập nhật từ bản phát hành dữ liệu mới nhất"
+            git push
+            # push bằng GITHUB_TOKEN có thể không kích hoạt Pages (kiểu triển khai từ nhánh) -> yêu cầu dựng lại
+            gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" > /dev/null || echo "::warning::Không yêu cầu dựng lại Pages được"
+          else
+            echo "Không có gì mới."
+          fi
