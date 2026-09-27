@@ -1,8 +1,8 @@
 {
   "apk_arm64": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-arm64-v8a.apk",
   "apk_arm32": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-armeabi-v7a.apk",
-  "apk_sha": "9210b9c87f516688367e1d3f3ae42758e97235fb840a5f0fa39ae5be325155ed",
-  "apk_version": "0.1.4",
+  "apk_sha": "5bd6dd08e6148c9a07ce63b83406be8fef5a4dcfab867f0c68d74de2c24a6881",
+  "apk_version": "0.1.5",
   "win_setup": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-windows-setup.exe",
   "win_zip": "https://github.com/mittohoa/toidi/releases/latest/download/toidi-windows-x64.zip"
 }
