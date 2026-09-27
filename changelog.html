@@ -37,6 +37,26 @@
 <article class="narrow doc">
 <h1><span data-l="vi">Nhật ký phiên bản</span><span data-l="en">Release notes</span></h1>
 <p class="small" data-l="en">Release notes are written in Vietnamese; the English summary is on the <a href="https://github.com/mittohoa/toidi/releases">Releases page</a>.</p>
+<h2>0.1.9 — 27/09/2026</h2>
+<ul>
+<li><strong>Đi bộ theo đường thật</strong>: chuyển tuyến giữa hai trạm dùng quãng đi bộ thật trên bản đồ OpenStreetMap ở những chỗ ước tính chim bay sai hẳn — hai trạm hai bên kênh, xa lộ, đường sắt (vd Bệnh viện Tân Hưng → Chợ Tôn Thất Thuyết: trước đây &quot;283 m&quot;, thực tế phải vòng 1,7 km); không đi bộ được thì không gợi ý (TP.HCM 273 cặp trạm, Hà Nội 29). Bật &quot;Đường đi theo phố&quot; thì đoạn từ chỗ bạn ra trạm và từ trạm tới nơi cũng tính theo đường thật.</li>
+<li><strong>Lõi tìm đường mới, nhiều tiêu chí</strong>: một lượt tìm theo cùng lúc giờ tới, số lần chuyển, đi bộ, tiền vé và thời gian ngồi buýt trên đường (metro không kẹt xe) — thay cho chạy lại nhiều lượt. Tìm ra những cách đi bộ ít hẳn mà trước đây bỏ sót (đo trên 800 chuyến thử: quãng đi bộ ít nhất giảm trung bình 20–30 m, nhiều chuyến giảm vài trăm mét), vẫn giữ cách buýt + metro. Bỏ các cách phải đổi thêm xe chỉ để tới sớm 1–2 phút hay bớt vài chục mét đi bộ.</li>
+<li><strong>Sửa giờ chuyến cuối buổi tối (TP.HCM)</strong>: app hiểu nhầm &quot;giờ hoạt động&quot; của nguồn là giờ xe về bến nên cắt bớt chuyến tối của mọi tuyến 30–90 phút (vd 150 hết lúc 20:45 thay vì 22:00, metro số 1 21:31 thay vì 22:00, cuối tuần 23:00). Đối chiếu số chuyến / ngày và giãn cách của 312 biểu đồ giờ cho thấy đó là giờ chuyến cuối xuất bến. Buổi tối giờ tìm được đường nhiều hơn hẳn (lúc 21:30: 0 → 30 trên 100 chuyến thử).</li>
+<li>Tới trạm trước chuyến cuối vẫn đón được chuyến cuối (trước đây app cộng thời gian chờ trung bình rồi bỏ luôn chuyến cuối).</li>
+<li><strong>Hiệu chỉnh dữ liệu đã xác minh</strong>: TÔI ĐI có thể tự sửa chỗ dữ liệu nguồn sai (tuyến tạm ngưng theo ngày, trạm dời, tuyến bỏ trạm / thêm trạm, giá vé) sau khi kiểm tra; trang *Giới thiệu* ghi số điểm đã hiệu chỉnh và ngày xác minh.</li>
+<li><strong>Theo dõi tuyến và trạm</strong>: bấm ☆ ở trang tuyến hoặc trạm. Tab *Tuyến* hiện tuyến theo dõi ở đầu, trạm theo dõi kèm chuyến sắp tới.</li>
+<li><strong>Widget Giờ xe</strong> (Android): chuyến sắp tới ở trạm bạn theo dõi, tự đếm phút ngay trên màn hình chính, không cần mở app (theo lịch, làm mới mỗi phút khi máy đang thức, không tốn pin lúc tắt màn hình). Thêm từ *Cài đặt → Widget màn hình chính*.</li>
+<li><strong>Tới trạm bằng xe</strong>: trong bảng chỉ đường chọn đi bộ, xe đạp, xe máy (của bạn — chặng đầu, gửi xe ở trạm), xe ôm công nghệ hoặc ô tô công nghệ (chặng đầu và cuối). App cộng thời gian lấy xe / chờ tài xế và giá ước tính của xe công nghệ; đoạn nào đi bộ nhanh hơn thì vẫn đi bộ. Nhớ lựa chọn cho lần sau.</li>
+<li><strong>Tiết kiệm pin khi đang đi</strong> (mặc định bật, tắt được trong Cài đặt): còn xa trạm thì định vị thưa bằng mạng (không bật GPS); gần trạm cần nhắc, hoặc tới giờ dự kiến theo lịch, mới bật GPS chính xác.</li>
+<li><strong>Nhiều phương án hơn, sát thực tế hơn</strong>: trước đây app chỉ giữ phương án tới sớm nhất theo số lần chuyển — thường 1–2 cách, làm mất các lựa chọn người ta hay đi thật (vd buýt + metro trễ vài phút). Giờ giữ cả phương án trễ không quá 20 phút, tìm rộng hơn (loại cộng dồn các tuyến đã có), chỉ bỏ phương án kém hẳn, và luôn có phương án đứng đầu mỗi tiêu chí. Ví dụ Chung cư Topaz → ĐH HUTECH: từ 2 lên 8 phương án (buýt thẳng 60-3 / 150 / 10, buýt + metro số 1, đi bộ ít nhất…).</li>
+<li><strong>&quot;Đề xuất&quot; gần cách người ta chọn thật</strong>: ngoài giờ tới và số lần chuyển, tính cả đi bộ (quá 300 m) và tiền vé. Vd Topaz → HUTECH giờ đề xuất 164 từ cổng chung cư nối 150 (miễn phí, đi bộ 160 m) thay vì đi bộ 1 km ra trạm đón tuyến 6.000đ. Cách lộ trình &quot;ngồi tiếp trên xe&quot; thay vì xuống sớm đi bộ sang trạm mà xe mình đi qua.</li>
+<li><strong>Sửa giá vé theo chặng</strong> (45 tuyến TP.HCM liên tỉnh / đường dài, vd 60-3: 6.000–55.000đ): trước đây app lấy mức thấp nhất; giờ ước tính theo quãng đường đi và ghi &quot;khoảng&quot;, trang tuyến ghi khoảng giá theo chặng.</li>
+<li>Sửa: mở bằng link lộ trình trên máy đã cho phép vị trí — app không còn tự đóng chỉ đường để nhảy sang *Quanh đây*.</li>
+<li><strong>Bản đồ có tên đường, tên khu vực</strong> khi phóng to (trước đây giao diện bản đồ không hiện được chữ).</li>
+<li><strong>Tìm kiếm phân biệt chỗ trùng tên</strong>: mỗi kết quả có thêm &quot;gần đường …&quot;, phường/xã và khoảng cách (vd các cơ sở của một trường).</li>
+<li><strong>Quanh đây</strong>: tên cạnh các chấm gần nhất và chấm đang chọn trên bản đồ.</li>
+<li>Sửa: huy hiệu tuyến dài (MRT1, SWB1) bị tràn trong danh sách tuyến.</li>
+</ul>
 <h2>0.1.8 — 27/09/2026</h2>
 <ul>
 <li><strong>Bản web có Đà Nẵng (thử nghiệm)</strong>: chọn là dùng ngay (không cần tải gói), dữ liệu và bản đồ đọc từ website khi cần.</li>
