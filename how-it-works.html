@@ -39,7 +39,7 @@
 <h1>Cách app tính toán</h1>
 <div class="notice">TÔI ĐI không có vị trí xe theo thời gian thực. Mọi giờ giấc, thời gian và chi phí là ước tính từ dữ liệu công bố — dưới đây là nguồn và cách tính từng con số, để bạn biết nên tin tới đâu.</div>
 <h2>🕒 Giờ chạy và thời gian chờ</h2>
-<ul><li>TP.HCM: giờ hoạt động, khoảng cách chuyến (tần suất) và giờ xuất bến lấy từ hệ thống thông tin xe buýt TP.HCM (apicms.ebms.vn), theo đúng thứ trong tuần.</li><li>Hà Nội: lấy từ timbus.vn (Transerco); metro 2A/3 theo OpenStreetMap.</li><li>Tuyến chạy theo tần suất: thời gian chờ = một nửa khoảng cách chuyến (vd 15 phút/chuyến → chờ ~7 phút). Vì vậy &quot;giờ lên xe&quot; là ước tính, không phải giờ xe tới thật.</li><li>Tuyến có giờ xuất bến cố định: dùng đúng giờ xuất bến.</li></ul>
+<ul><li>TP.HCM: giờ hoạt động, khoảng cách chuyến (tần suất) và giờ xuất bến lấy từ hệ thống thông tin xe buýt TP.HCM (apicms.ebms.vn), theo đúng thứ trong tuần.</li><li>Hà Nội: lấy từ timbus.vn (Transerco); metro 2A/3 theo OpenStreetMap.</li><li>Đà Nẵng (thử nghiệm, gói tải thêm): tuyến, trạm, giờ hoạt động, tần suất và giá vé theo OpenStreetMap do cộng đồng nhập — thành phố chưa công bố dữ liệu máy đọc được. Tần suất ghi dạng &quot;10–30 phút&quot;: số nhỏ dùng cho giờ cao điểm (6:00–8:30, 16:00–18:30), số lớn cho giờ còn lại. Tuyến mà thứ tự trạm hoặc lộ trình trên OSM chưa khớp bị bỏ, không đoán. Giá tuyến dài chỉ là mức tối đa (&quot;tới …&quot;).</li><li>Tuyến chạy theo tần suất: thời gian chờ = một nửa khoảng cách chuyến (vd 15 phút/chuyến → chờ ~7 phút). Vì vậy &quot;giờ lên xe&quot; là ước tính, không phải giờ xe tới thật.</li><li>Tuyến có giờ xuất bến cố định: dùng đúng giờ xuất bến.</li></ul>
 <h2>🚌 Thời gian đi xe</h2>
 <ul><li>TP.HCM: thời gian chạy toàn tuyến theo biểu đồ của nguồn, chia cho từng trạm theo quãng đường dọc lộ trình.</li><li>Hà Nội: nguồn không cho thời gian chạy → ước theo chiều dài lộ trình với vận tốc trung bình 16 km/h (buýt, đã tính dừng đón trả khách) và 35 km/h (metro).</li><li>Không tính kẹt xe thực tế — giờ cao điểm có thể chậm hơn.</li></ul>
 <h2>🚏 Giờ xe ở trạm — gần đúng</h2>
@@ -60,6 +60,7 @@
 <ul>
 <li><strong>Xe buýt, metro TP.HCM</strong> (gồm Bình Dương, Bà Rịa – Vũng Tàu cũ): tổng hợp từ thông tin công khai của hệ thống thông tin xe buýt TP.HCM (apicms.ebms.vn).</li>
 <li><strong>Xe buýt Hà Nội</strong>: tổng hợp từ thông tin công khai của Transerco (timbus.vn). <strong>Metro Hà Nội</strong> (2A, 3): © OpenStreetMap contributors.</li>
+<li><strong>Xe buýt Đà Nẵng</strong> (thử nghiệm, gói tải thêm): © OpenStreetMap contributors — thành phố chưa công bố dữ liệu dạng máy đọc được; tuyến có dữ liệu chưa khớp bị bỏ.</li>
 <li><strong>Bản đồ, địa điểm, tên đường, phường/xã</strong>: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> (ODbL); bản đồ nền <a href="https://protomaps.com">Protomaps</a>.</li>
 <li><strong>Đường đi bộ / xe theo phố</strong> (tuỳ chọn): <a href="https://routing.openstreetmap.de/about.html">OSRM · FOSSGIS</a>, dữ liệu OpenStreetMap.</li>
 </ul>
@@ -69,7 +70,7 @@
 <h1>How the app calculates</h1>
 <div class="notice">TÔI ĐI has no real-time vehicle positions. Every time, duration and cost is an estimate from published data — here is where each number comes from and how it&#x27;s computed, so you know how far to trust it.</div>
 <h2>🕒 Timetables and waiting time</h2>
-<ul><li>HCMC: operating hours, headways and departure times come from the HCMC bus information system (apicms.ebms.vn), by day of week.</li><li>Hanoi: from timbus.vn (Transerco); metro lines 2A/3 from OpenStreetMap.</li><li>Frequency-based routes: waiting time = half the headway (e.g. every 15 min → ~7 min wait). So the &quot;board at&quot; time is an estimate, not when a bus actually arrives.</li><li>Routes with fixed departures: the published departure times are used as is.</li></ul>
+<ul><li>HCMC: operating hours, headways and departure times come from the HCMC bus information system (apicms.ebms.vn), by day of week.</li><li>Hanoi: from timbus.vn (Transerco); metro lines 2A/3 from OpenStreetMap.</li><li>Da Nang (beta, optional download): routes, stops, hours, frequency and fares from community-mapped OpenStreetMap — the city publishes no machine-readable data. Frequencies like &quot;10–30 min&quot;: the lower value is used at peak times (6:00–8:30, 16:00–18:30), the higher one otherwise. Routes whose stop order or path on OSM doesn&#x27;t match are left out, not guessed. Fares on long routes are only a maximum (&quot;up to …&quot;).</li><li>Frequency-based routes: waiting time = half the headway (e.g. every 15 min → ~7 min wait). So the &quot;board at&quot; time is an estimate, not when a bus actually arrives.</li><li>Routes with fixed departures: the published departure times are used as is.</li></ul>
 <h2>🚌 Ride time</h2>
 <ul><li>HCMC: the route&#x27;s scheduled running time from the source, split between stops by distance along the route.</li><li>Hanoi: the source has no running times → estimated from route length at 16 km/h average (bus, including stops) and 35 km/h (metro).</li><li>Live traffic is not included — rush hour may be slower.</li></ul>
 <h2>🚏 Stop departures — approximate</h2>
@@ -90,6 +91,7 @@
 <ul>
 <li><strong>HCMC bus &amp; metro</strong> (including former Bình Dương and Bà Rịa – Vũng Tàu): compiled from public information of the HCMC bus information system (apicms.ebms.vn).</li>
 <li><strong>Hanoi bus</strong>: compiled from public information of Transerco (timbus.vn). <strong>Hanoi metro</strong> (2A, 3): © OpenStreetMap contributors.</li>
+<li><strong>Da Nang bus</strong> (beta, optional download): © OpenStreetMap contributors — the city publishes no machine-readable data; routes with inconsistent data are left out.</li>
 <li><strong>Maps, places, streets, wards</strong>: © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> (ODbL); basemap by <a href="https://protomaps.com">Protomaps</a>.</li>
 <li><strong>Street walking / driving routes</strong> (optional): <a href="https://routing.openstreetmap.de/about.html">OSRM · FOSSGIS</a>, OpenStreetMap data.</li>
 </ul>
